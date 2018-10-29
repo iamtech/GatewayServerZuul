@@ -28,7 +28,11 @@ security:
 zuul:
   routes:
     employeeUI:
+      path: /employeeUI/**
       serviceId : employee-microservice-dataset
+    ticketUI:
+      path: /ticketUI/**
+      serviceId : ticket-microservice-dataset  
   host:
      socket-timeout-millis : 30000
  

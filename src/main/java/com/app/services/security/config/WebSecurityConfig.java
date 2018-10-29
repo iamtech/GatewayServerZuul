@@ -83,6 +83,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/h2-console/**/**").permitAll()
 
             .antMatchers("/auth/**").permitAll()
+            // Only for ADMIN scope User
+            .antMatchers("/employeeUI/**").hasRole("ADMIN")
             .anyRequest().authenticated();
 
        httpSecurity

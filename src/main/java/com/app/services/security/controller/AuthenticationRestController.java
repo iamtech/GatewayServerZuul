@@ -15,6 +15,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -85,7 +86,11 @@ public class AuthenticationRestController {
         Objects.requireNonNull(password);
 
         try {
+        	/* Generating Bcrypt Password as per Spring Security
+        	 * BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    		String hashedPassword = passwordEncoder.encode("userpass");*/
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            
         } catch (DisabledException e) {
             throw new AuthenticationException("User is disabled!", e);
         } catch (BadCredentialsException e) {
